@@ -1,16 +1,17 @@
-package main
+package handlers
 
 import (
-    "net/http"
-    "strconv"
+	"net/http"
+	"strconv"
 
-    "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
+	"github.com/stephen-a-nicholson/contact-api-go/pkg/models"
 )
 
-var contacts []Contact
+var contacts []models.Contact
 
-func createContact(c *gin.Context) {
-    var contact Contact
+func CreateContact(c *gin.Context) {
+    var contact models.Contact
     if err := c.ShouldBindJSON(&contact); err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
         return
@@ -22,7 +23,7 @@ func createContact(c *gin.Context) {
     c.JSON(http.StatusCreated, contact)
 }
 
-func getContact(c *gin.Context) {
+func GetContact(c *gin.Context) {
     id, err := strconv.Atoi(c.Param("id"))
     if err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid contact ID"})
@@ -39,14 +40,14 @@ func getContact(c *gin.Context) {
     c.JSON(http.StatusNotFound, gin.H{"error": "Contact not found"})
 }
 
-func updateContact(c *gin.Context) {
+func UpdateContact(c *gin.Context) {
     id, err := strconv.Atoi(c.Param("id"))
     if err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid contact ID"})
         return
     }
 
-    var updatedContact Contact
+    var updatedContact models.Contact
     if err := c.ShouldBindJSON(&updatedContact); err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
         return
@@ -64,7 +65,7 @@ func updateContact(c *gin.Context) {
     c.JSON(http.StatusNotFound, gin.H{"error": "Contact not found"})
 }
 
-func deleteContact(c *gin.Context) {
+func DeleteContact(c *gin.Context) {
     id, err := strconv.Atoi(c.Param("id"))
     if err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid contact ID"})

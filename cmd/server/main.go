@@ -1,17 +1,15 @@
 package main
 
 import (
-    "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
+	"github.com/stephen-a-nicholson/contact-api-go/pkg/routes"
 )
 
 func main() {
     router := gin.Default()
 
-    // Define routes
-    router.POST("/contacts", createContact)
-    router.GET("/contacts/:id", getContact)
-    router.PUT("/contacts/:id", updateContact)
-    router.DELETE("/contacts/:id", deleteContact)
+    // Initialize routes
+    routes.InitRoutes(router)
 
     // Start the server
     router.Run(":8080")
