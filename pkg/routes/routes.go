@@ -6,8 +6,8 @@ import (
 )
 
 func InitRoutes(router *gin.Engine) {
-    router.POST("/contacts", handlers.CreateContact)
-    router.GET("/contacts/:id", handlers.GetContact)
-    router.PUT("/contacts/:id", handlers.UpdateContact)
-    router.DELETE("/contacts/:id", handlers.DeleteContact)
+	router.POST("/contacts", handlers.CreateContact)
+	router.GET("/contacts/:id", handlers.GetContact)
+	router.PUT("/contacts/:id", handlers.UpdateContact)
+	router.DELETE("/contacts/:id", handlers.DeleteContact)
 }

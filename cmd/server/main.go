@@ -6,11 +6,11 @@ import (
 )
 
 func main() {
-    router := gin.Default()
+	router := gin.Default()
 
-    // Initialize routes
-    routes.InitRoutes(router)
+	// Initialize routes
+	routes.InitRoutes(router)
 
-    // Start the server
-    router.Run(":8080")
+	// Start the server
+	router.Run(":8080")
 }
